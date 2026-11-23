@@ -1,45 +1,93 @@
-# EX-NO.-4a-MACHINE-LEARNING-MODEL-LINEAR-REGRESSION
+
+# EX.NO.4a – MACHINE LEARNING MODEL – LINEAR REGRESSION
+
 ## AIM
-To predict house prices using regression models and compare the performance of different machine learning regression models based on RMSE, MAE, and R².
-1.Machine Learning:Machine Learning is used to learn patterns from existing data and make predictions. 
-•	Regression is a supervised learning technique used to predict continuous numerical values. 
-•	In this experiment, regression models are used to predict the price of a house. 
-•	The dataset contains house-related features such as: 
-o	square_feet 
-o	num_rooms 
-o	age 
-o	distance_to_city(km) 
-•	The target variable is: 
-o	price 
+
+To predict house prices using regression models and compare the performance of different machine learning regression models based on RMSE, MAE, and R² evaluation metrics.
+
+## THEORY
+
+Machine Learning is a branch of Artificial Intelligence that enables computers to learn patterns from existing data and make predictions without being explicitly programmed.
+
+Regression is a supervised learning technique used to predict continuous numerical values. In this experiment, different regression algorithms are applied to predict house prices based on house-related features.
+
+**Features used in the dataset:**
+
+1. **square_feet:** Total area or size of the house.
+2. **num_rooms:** Number of rooms in the house.
+3. **age:** Age of the house in years.
+4. **distance_to_city(km):** Distance of the house from the city centre.
+
+**Target Variable:**
+
+- **price:** The actual price of the house.
+
 ## DATASET DESCRIPTION
-•	Dataset: House Price Dataset 
-•	Problem: Predict house price. 
-•	Features (X): 
-o	square_feet – size of the house. 
-o	num_rooms – number of rooms. 
-o	age – age of the house in years. 
-o	distance_to_city(km) – distance from the city centre. 
-•	Target (y): 
-o	price – continuous house price. 
+
+- Dataset: House Price Dataset
+- Problem: House Price Prediction
+- Input Features (X): square_feet, num_rooms, age, distance_to_city(km)
+- Target Variable (Y): price
+
 ## PROBLEM STATEMENT
-•	Develop a machine learning model to predict house prices. 
-•	Use house characteristics as input. 
-•	Train different regression models. 
-•	Compare their prediction performance. 
-•	Select the better-performing model based on evaluation metrics. 
+
+1. Develop a machine learning model to predict house prices.
+2. Use house characteristics as input features.
+3. Train different regression models.
+4. Compare their prediction performance.
+5. Select the better-performing model based on evaluation metrics.
+
 ## REGRESSION MODELS USED
-The uploaded notebook compares the following models:
-1.	Linear Regression 
-2.	Ridge Regression 
-3.	Lasso Regression 
-4.	ElasticNet Regression 
-5.	Polynomial Regression 
-6.	Decision Tree Regressor 
-7.	Random Forest Regressor 
-8.	Gradient Boosting Regressor 
-9.	Support Vector Regressor (SVR) 
-10.	K-Nearest Neighbors (KNN) Regressor 
-### LIBRARIES USED
+
+The following ten regression models are implemented and compared:
+
+1. Linear Regression
+2. Ridge Regression
+3. Lasso Regression
+4. ElasticNet Regression
+5. Polynomial Regression
+6. Decision Tree Regressor
+7. Random Forest Regressor
+8. Gradient Boosting Regressor
+9. Support Vector Regressor (SVR)
+10. K-Nearest Neighbors (KNN) Regressor
+
+## LIBRARIES USED
+
+- **Pandas:** Used for loading and manipulating datasets.
+- **NumPy:** Used for numerical operations.
+- **Matplotlib:** Used for data visualization.
+- **Seaborn:** Used for statistical graphs and visualization.
+- **Scikit-learn:** Used for implementing machine learning algorithms and evaluating models.
+
+## PROCEDURE
+
+1. Import the required Python libraries.
+2. Load the house price dataset using Pandas.
+3. Display the first five records of the dataset.
+4. Examine the dataset using info(), shape(), and describe().
+5. Check for missing values in the dataset.
+6. Perform Exploratory Data Analysis (EDA).
+7. Visualize feature distributions using histograms.
+8. Perform correlation analysis using a heatmap.
+9. Analyze relationships between features and house prices using scatter plots.
+10. Detect outliers using boxplots.
+11. Remove extreme house prices using the 1st and 99th percentiles.
+12. Separate independent variables (X) and dependent variable (y).
+13. Split the dataset into training and testing sets.
+14. Apply StandardScaler for feature scaling.
+15. Train different regression models.
+16. Predict house prices using each trained model.
+17. Evaluate the models using RMSE, MAE, and R².
+18. Compare the performance of all regression models.
+19. Visualize actual versus predicted prices and perform residual analysis.
+20. Identify important features using Random Forest and Gradient Boosting.
+
+## PROGRAM
+
+### Step 1: Import Required Libraries
+
+```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -49,10 +97,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 
 from sklearn.linear_model import (
-    LinearRegression,
-    Ridge,
-    Lasso,
-    ElasticNet
+    LinearRegression, Ridge, Lasso, ElasticNet
 )
 
 from sklearn.tree import DecisionTreeRegressor
@@ -70,33 +115,40 @@ from sklearn.metrics import (
     mean_absolute_error,
     r2_score
 )
-### LOAD THE DATASET
-import pandas as pd
+```
 
+### Step 2: Load the Dataset
+
+```python
 df = pd.read_csv(
     '/content/drive/MyDrive/Datasets/house_prices_dataset.csv'
 )
 
 df.head()
-### DATA OVERVIEW
-Display the dataset
-df
-Display information
+```
+
+### Step 3: Data Overview
+
+```python
+# Display dataset
+print(df)
+
+# Display information
 df.info()
-Display shape
-df.shape
-Summary statistics
-df.describe()
-Check missing values
-df.isnull().sum()
-## EXPLORATORY DATA ANALYSIS
-Distribution of Features
-The notebook examines the distribution of:
-•	square_feet 
-•	num_rooms 
-•	age 
-•	distance_to_city(km) 
-•	price 
+
+# Display shape
+print(df.shape)
+
+# Summary statistics
+print(df.describe())
+
+# Check missing values
+print(df.isnull().sum())
+```
+
+### Step 4: Exploratory Data Analysis (EDA)
+
+```python
 numeric_features = [
     'square_feet',
     'num_rooms',
@@ -110,9 +162,11 @@ for col in numeric_features:
     sns.histplot(df[col], kde=True, bins=30)
     plt.title(f'Distribution of {col}')
     plt.show()
-9. CORRELATION ANALYSIS
-•	Correlation shows the relationship between numerical variables. 
-•	A correlation heatmap is used to visualize these relationships. 
+```
+
+### Step 5: Correlation Analysis
+
+```python
 plt.figure(figsize=(8,6))
 
 sns.heatmap(
@@ -124,8 +178,11 @@ sns.heatmap(
 
 plt.title("Feature Correlation Matrix")
 plt.show()
-10. SCATTER PLOTS
-Scatter plots are used to study the relationship between individual features and house price.
+```
+
+### Step 6: Scatter Plots
+
+```python
 for col in [
     'square_feet',
     'num_rooms',
@@ -136,9 +193,11 @@ for col in [
     sns.scatterplot(x=df[col], y=df['price'])
     plt.title(f'{col} vs Price')
     plt.show()
-## OUTLIER DETECTION
-•	Boxplots are used to identify extreme values. 
-•	Outliers may negatively affect regression models. 
+```
+
+### Step 7: Outlier Detection
+
+```python
 for col in [
     'square_feet',
     'num_rooms',
@@ -147,11 +206,14 @@ for col in [
     'price'
 ]:
     plt.figure(figsize=(6,4))
-    sns.boxplot(df[col])
+    sns.boxplot(x=df[col])
     plt.title(f'Boxplot of {col}')
     plt.show()
-## OUTLIER TREATMENT
-The notebook removes extremely low and extremely high house prices using the 1st and 99th percentiles.
+```
+
+### Step 8: Outlier Treatment
+
+```python
 Q1 = df['price'].quantile(0.01)
 Q99 = df['price'].quantile(0.99)
 
@@ -159,9 +221,13 @@ df = df[
     (df['price'] >= Q1) &
     (df['price'] <= Q99)
 ]
-•	This reduces the effect of extreme house prices. 
-•	It helps the models learn from more typical observations. 
-13. DEFINE FEATURES AND TARGET
+```
+
+The 1st and 99th percentiles are used to remove extremely low and high house prices.
+
+### Step 9: Define Features and Target
+
+```python
 X = df[
     [
         'square_feet',
@@ -172,33 +238,37 @@ X = df[
 ]
 
 y = df['price']
-•	X → Input features. 
-•	y → Target house price. 
-14. TRAIN-TEST SPLIT
+```
+
+### Step 10: Train-Test Split
+
+```python
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
     test_size=0.2,
     random_state=42
 )
-•	80% → Training data 
-•	20% → Testing data 
-## FEATURE SCALING
-The notebook uses StandardScaler.
+```
+
+- 80% of the data is used for training.
+- 20% of the data is used for testing.
+
+### Step 11: Feature Scaling
+
+```python
 scaler = StandardScaler()
 
 X_train_scaled = scaler.fit_transform(X_train)
 
 X_test_scaled = scaler.transform(X_test)
-•	Scaling puts the features on a comparable scale. 
-•	The scaler is fitted only on training data. 
-•	The same transformation is applied to test data. 
+```
 
-## BASELINE MODEL
-The baseline predicts the mean house price for every test observation.
+### Step 12: Baseline Model
+
+```python
 y_pred_baseline = (
-    np.mean(y_train) *
-    np.ones_like(y_test)
+    np.mean(y_train) * np.ones_like(y_test)
 )
 
 rmse_baseline = np.sqrt(
@@ -214,37 +284,41 @@ print(
     f"Baseline RMSE: {rmse_baseline:.2f}, "
     f"MAE: {mae_baseline:.2f}"
 )
+```
 
-## LINEAR REGRESSION
-•	Linear Regression finds a linear relationship between input features and house price. 
-•	It is used as the main baseline regression model. 
+### Step 13: Linear Regression
+
+```python
 lr = LinearRegression()
 
 lr.fit(X_train_scaled, y_train)
 
 y_pred_lr = lr.predict(X_test_scaled)
+```
 
-## RIDGE REGRESSION
-•	Ridge Regression is a regularized version of Linear Regression. 
-•	It helps control large model coefficients. 
+### Step 14: Ridge Regression
+
+```python
 ridge = Ridge(alpha=1.0)
 
 ridge.fit(X_train_scaled, y_train)
 
 y_pred_ridge = ridge.predict(X_test_scaled)
+```
 
-## LASSO REGRESSION
-•	Lasso Regression uses L1 regularization. 
-•	It can reduce some feature coefficients toward zero. 
+### Step 15: Lasso Regression
+
+```python
 lasso = Lasso(alpha=0.1)
 
 lasso.fit(X_train_scaled, y_train)
 
 y_pred_lasso = lasso.predict(X_test_scaled)
+```
 
-##  ELASTIC NET REGRESSION
-•	ElasticNet combines L1 and L2 regularization. 
-•	It is useful when several features may contribute to the prediction. 
+### Step 16: ElasticNet Regression
+
+```python
 elastic = ElasticNet(
     alpha=0.1,
     l1_ratio=0.5
@@ -253,13 +327,15 @@ elastic = ElasticNet(
 elastic.fit(X_train_scaled, y_train)
 
 y_pred_elastic = elastic.predict(X_test_scaled)
+```
 
-##  POLYNOMIAL REGRESSION
-•	Polynomial Regression extends Linear Regression by creating polynomial features. 
-•	The notebook uses degree 2. 
+### Step 17: Polynomial Regression
+
+```python
 poly = PolynomialFeatures(degree=2)
 
 X_train_poly = poly.fit_transform(X_train_scaled)
+
 X_test_poly = poly.transform(X_test_scaled)
 
 poly_lr = LinearRegression()
@@ -267,10 +343,11 @@ poly_lr = LinearRegression()
 poly_lr.fit(X_train_poly, y_train)
 
 y_pred_poly = poly_lr.predict(X_test_poly)
+```
 
-##  DECISION TREE REGRESSOR
-•	A Decision Tree divides the data into different regions based on feature values. 
-•	It can model nonlinear relationships. 
+### Step 18: Decision Tree Regressor
+
+```python
 dt = DecisionTreeRegressor(
     random_state=42
 )
@@ -278,10 +355,11 @@ dt = DecisionTreeRegressor(
 dt.fit(X_train_scaled, y_train)
 
 y_pred_dt = dt.predict(X_test_scaled)
+```
 
-##  RANDOM FOREST REGRESSOR
-•	Random Forest combines multiple decision trees. 
-•	It generally provides more robust predictions than a single tree. 
+### Step 19: Random Forest Regressor
+
+```python
 rf = RandomForestRegressor(
     n_estimators=100,
     random_state=42
@@ -290,10 +368,11 @@ rf = RandomForestRegressor(
 rf.fit(X_train_scaled, y_train)
 
 y_pred_rf = rf.predict(X_test_scaled)
+```
 
-##  GRADIENT BOOSTING REGRESSOR
-•	Gradient Boosting builds models sequentially. 
-•	Each new model attempts to improve the errors of previous models. 
+### Step 20: Gradient Boosting Regressor
+
+```python
 gbr = GradientBoostingRegressor(
     n_estimators=100,
     learning_rate=0.1,
@@ -303,10 +382,11 @@ gbr = GradientBoostingRegressor(
 gbr.fit(X_train_scaled, y_train)
 
 y_pred_gbr = gbr.predict(X_test_scaled)
+```
 
-## SUPPORT VECTOR REGRESSOR
-•	SVR uses Support Vector Machine principles for regression. 
-•	The notebook uses an RBF kernel. 
+### Step 21: Support Vector Regressor (SVR)
+
+```python
 svr = SVR(
     kernel='rbf',
     C=100,
@@ -317,10 +397,11 @@ svr = SVR(
 svr.fit(X_train_scaled, y_train)
 
 y_pred_svr = svr.predict(X_test_scaled)
+```
 
-##  KNN REGRESSOR
-•	KNN predicts a value based on nearby observations. 
-•	The notebook uses 5 neighbors. 
+### Step 22: KNN Regressor
+
+```python
 knn = KNeighborsRegressor(
     n_neighbors=5
 )
@@ -328,19 +409,17 @@ knn = KNeighborsRegressor(
 knn.fit(X_train_scaled, y_train)
 
 y_pred_knn = knn.predict(X_test_scaled)
+```
 
-## MODEL EVALUATION
-The notebook uses three metrics:
-RMSE
-•	Root Mean Squared Error. 
-•	Lower value indicates better performance. 
-MAE
-•	Mean Absolute Error. 
-•	Lower value indicates better performance. 
-R²
-•	Measures how well the model explains variation in house prices. 
-•	Higher value generally indicates better performance. 
-Code
+### Step 23: Model Evaluation
+
+The following evaluation metrics are used:
+
+- **RMSE (Root Mean Squared Error):** Measures the square root of the average squared prediction error. Lower values indicate better performance.
+- **MAE (Mean Absolute Error):** Measures the average absolute difference between actual and predicted values. Lower values indicate better performance.
+- **R² Score:** Measures how well the model explains the variation in house prices. Higher values generally indicate better performance.
+
+```python
 models = {
     "Linear Regression": y_pred_lr,
     "Ridge": y_pred_ridge,
@@ -363,13 +442,11 @@ for name, y_pred in models.items():
     )
 
     mae = mean_absolute_error(
-        y_test,
-        y_pred
+        y_test, y_pred
     )
 
     r2 = r2_score(
-        y_test,
-        y_pred
+        y_test, y_pred
     )
 
     results.append([
@@ -387,17 +464,23 @@ results_df = pd.DataFrame(
 results_df.sort_values(
     by="RMSE"
 )
+```
 
-##  MODEL COMPARISON
-<img width="601" height="250" alt="image" src="https://github.com/user-attachments/assets/bca8dfef-1052-4e92-90e1-0f6356888be5" />
-		
+## MODEL COMPARISON
+
+The performance of all ten regression models is compared using RMSE, MAE, and R².
 
 ### Comparison Criteria
-•	Lower RMSE → Better model. 
-•	Lower MAE → Better model. 
-•	Higher R² → Better model. 
-The notebook sorts the models according to RMSE to compare their performance.
+
+- Lower RMSE indicates better prediction performance.
+- Lower MAE indicates smaller prediction errors.
+- Higher R² indicates better explanation of the target variable.
+
+The model with the lowest RMSE is considered the best-performing model according to this evaluation metric.
+
 ## ACTUAL VS PREDICTED PRICE
+
+```python
 plt.figure(figsize=(15,12))
 
 for i, (name, y_pred) in enumerate(models.items()):
@@ -422,11 +505,17 @@ for i, (name, y_pred) in enumerate(models.items()):
 
 plt.tight_layout()
 plt.show()
-•	The plot compares actual house prices with predicted prices. 
-•	Points closer to the diagonal line indicate better predictions. 
-30. RESIDUAL ANALYSIS
-•	A residual is the difference between actual and predicted values. 
-Residual = Actual Price − Predicted Price
+```
+
+The graph compares actual house prices with predicted prices. Points closer to the diagonal line indicate better predictions.
+
+## RESIDUAL ANALYSIS
+
+A residual is the difference between the actual price and the predicted price.
+
+**Residual = Actual Price − Predicted Price**
+
+```python
 for name, y_pred in models.items():
 
     residuals = y_test - y_pred
@@ -450,10 +539,14 @@ for name, y_pred in models.items():
     plt.title(f"{name}: Residual Plot")
 
     plt.show()
-•	Residuals close to zero indicate smaller prediction errors. 
-•	Residual plots help identify unusual prediction patterns. 
-##  RANDOM FOREST FEATURE IMPORTANCE
-The notebook calculates the importance of each feature using Random Forest.
+```
+
+- Residuals close to zero indicate smaller prediction errors.
+- Residual plots help identify unusual prediction patterns.
+
+## RANDOM FOREST FEATURE IMPORTANCE
+
+```python
 importances = rf.feature_importances_
 
 feat_names = X.columns
@@ -465,13 +558,16 @@ sns.barplot(
     y=feat_names
 )
 
-plt.title(
-    "Random Forest Feature Importance"
-)
+plt.title("Random Forest Feature Importance")
 
 plt.show()
-This helps identify which house features contribute more to the Random Forest prediction.
-##  GRADIENT BOOSTING FEATURE IMPORTANCE
+```
+
+This analysis identifies which house features contribute more to the Random Forest prediction.
+
+## GRADIENT BOOSTING FEATURE IMPORTANCE
+
+```python
 importances_gbr = gbr.feature_importances_
 
 plt.figure(figsize=(6,4))
@@ -481,12 +577,16 @@ sns.barplot(
     y=feat_names
 )
 
-plt.title(  "Gradient Boosting Feature Importance")
+plt.title("Gradient Boosting Feature Importance")
 
 plt.show()
-This shows the relative contribution of the house features to the Gradient Boosting model.
+```
+
+This graph shows the relative contribution of different house features to the Gradient Boosting model.
 
 ## RMSE COMPARISON GRAPH
+
+```python
 plt.figure(figsize=(10,6))
 
 sns.barplot(
@@ -495,13 +595,34 @@ sns.barplot(
     data=results_df.sort_values("RMSE")
 )
 
-plt.title(
-    "RMSE Comparison Across Regression Models"
-)
+plt.title("RMSE Comparison Across Regression Models")
 
 plt.show()
-•	The graph provides a visual comparison of model errors. 
-•	The model with the lowest RMSE performs best according to this metric.
-## CONCLUSION
-Thus, Linear Regression and other regression models were successfully applied for house price prediction, and their performance was compared using standard regression evaluation metrics.
+```
 
+The graph provides a visual comparison of prediction errors across all regression models. The model with the lowest RMSE performs best according to this metric.
+
+## MACHINE LEARNING WORKFLOW
+
+```mermaid
+flowchart TD
+    A[Load House Price Dataset] --> B[Data Overview]
+    B --> C[Exploratory Data Analysis]
+    C --> D[Outlier Detection and Treatment]
+    D --> E[Feature and Target Selection]
+    E --> F[Train-Test Split]
+    F --> G[Feature Scaling]
+    G --> H[Train Regression Models]
+    H --> I[House Price Prediction]
+    I --> J[Model Evaluation]
+    J --> K[Model Comparison]
+    K --> L[Feature Importance and Visualization]
+```
+
+## RESULT
+
+Thus, Linear Regression and other regression models were successfully applied for house price prediction using Python and Scikit-learn. The performance of ten different regression algorithms was evaluated and compared using RMSE, MAE, and R² metrics. Actual versus predicted price analysis, residual analysis, and feature importance analysis were also performed successfully.
+
+## CONCLUSION
+
+The experiment demonstrates how different machine learning regression algorithms can be used for predicting house prices. The importance of data analysis, feature scaling, model training, evaluation metrics, and model comparison in developing an effective machine learning model was understood.
